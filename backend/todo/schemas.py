@@ -11,7 +11,7 @@ class TodoBase(BaseModel):
     description: str
 
 class TodoCreate(TodoBase):
-    pass
+    description: Optional[str] = ''
 
 class TodoUpdate(BaseModel):
     title: Optional[str] = None

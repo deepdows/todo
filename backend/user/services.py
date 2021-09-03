@@ -19,7 +19,7 @@ def register_service(auth_details, db):
     if len(auth_details.username) < 4:
         return HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Username must be at least 4 chars")
     if len(auth_details.password) < 8:
-        return HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Password must be at least 2 chars")
+        return HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Password must be at least 8 chars")
     
     hashed_password = get_password_hash(auth_details.password)
     auth_details.password = hashed_password
