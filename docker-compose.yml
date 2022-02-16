@@ -6,15 +6,13 @@ services:
         restart: unless-stopped
         build: ./backend
         container_name: fastapi-todo
-        entrypoint: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-        expose:
-            - "8000"
+        entrypoint: uvicorn main:app --host 0.0.0.0 --port 8000
+        ports:
+            - "8000:8000"
         volumes:
             - './backend:/app'
         depends_on:
             - todo-db
-        networks:
-            - network
 
     todo-db:
         restart: always
@@ -26,9 +24,3 @@ services:
             - POSTGRES_PASSWORD=secret
             - POSTGRES_USER=user
             - POSTGRES_DB=db
-        networks:
-            - network
-        
-networks:
-    network:
-        driver: bridge
